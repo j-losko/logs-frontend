@@ -13,6 +13,16 @@ class ApiService {
       .then(this.mapResponse);
   }
 
+  httpDELETE(url, headers = {}) {
+    return axios.delete(backendUrl + url, this.authorize())
+      .then(this.mapResponse);
+  }
+
+  httpPUT(url, data = {}, headers = {}) {
+    return axios.put(backendUrl + url, data, this.authorize())
+      .then(this.mapResponse);
+  }
+
   mapResponse = (response) => {
     return response.data;
   };
