@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import authService from '../api/authentication.api';
-import Style from './Login.module.css';
-import userService from '../api/users.api';
+import authService from '../../api/authentication.api';
+import Style from './Start.module.css';
+import userService from '../../api/users.api';
 
-export default function Login(props) {
+export default function Start(props) {
   const [napisy, setNapisy] = useState('placeholder');
 
   const signIn = () => {
@@ -29,10 +29,10 @@ export default function Login(props) {
 
   return (
     <div className={Style.container}>
-      <div onClick={signIn}>Logowanie</div>
-      <div onClick={signUp}>Rejestracja</div>
-      <div onClick={getCurrentUser}>Get Current User</div>
-      <div>{napisy}</div>
+      <div className={Style.button} onClick={signIn}>Logowanie</div>
+      <div className={Style.button} onClick={signUp}>Rejestracja</div>
+      <div className={Style.button} onClick={getCurrentUser}>Get Current User</div>
+      <div className={Style.text}>{napisy}</div>
     </div>
   );
 }
