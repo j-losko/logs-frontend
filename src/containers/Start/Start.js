@@ -4,6 +4,7 @@ import Style from './Start.module.css';
 import userService from '../../api/users.api';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
+import CalendarComponent from '../../components/Calendar/Calendar';
 
 export default function Start(props) {
   const [route, setRoute] = useState('');
@@ -41,6 +42,7 @@ export default function Start(props) {
         <div className={Style.button} onClick={getCurrentUser}>Get Current User</div>
         <div className={Style.text}>{napisy}</div>
       </React.Fragment>}
+      <CalendarComponent />
     </div>
   );
 }
