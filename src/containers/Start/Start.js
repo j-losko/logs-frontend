@@ -5,6 +5,7 @@ import userService from '../../api/users.api';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
 import CalendarComponent from '../../components/Calendar/Calendar';
+import { Link } from 'react-router-dom';
 
 export default function Start(props) {
   const [route, setRoute] = useState('');
@@ -34,14 +35,8 @@ export default function Start(props) {
 
   return (
     <div className={Style.container}>
-      {route === 'register' && <Register />}
-      {route === 'login' && <Login />}
-      {!route && <React.Fragment>
-        <div className={Style.button} onClick={signIn}>Logowanie</div>
-        <div className={Style.button} onClick={signUp}>Rejestracja</div>
-        <div className={Style.button} onClick={getCurrentUser}>Get Current User</div>
-        <div className={Style.text}>{napisy}</div>
-      </React.Fragment>}
+      <div className={Style.button} onClick={getCurrentUser}>Get Current User</div>
+      <div className={Style.text}>{napisy}</div>
       <CalendarComponent />
     </div>
   );

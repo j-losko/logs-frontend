@@ -26,18 +26,18 @@ export default class CalendarComponent extends Component {
   state = {
     events: [
       {
-        start: moment(new Date()).subtract(10, 'hours').toDate(),
-        end: moment(new Date()).subtract(7, 'hours').toDate(),
+        start: moment(new Date()).add(7, 'hours').toDate(),
+        end: moment(new Date()).add(10, 'hours').toDate(),
         title: "Przykładowy log 1"
       },
       {
-        start: moment(new Date()).subtract(9, 'hours').toDate(),
-        end: moment(new Date()).subtract(6, 'hours').toDate(),
+        start: moment(new Date()).add(6, 'hours').toDate(),
+        end: moment(new Date()).add(9, 'hours').toDate(),
         title: "Przykładowy log 2"
       },
       {
-        start: moment(new Date()).subtract(5, 'hours').toDate(),
-        end: moment(new Date()).subtract(4, 'hours').toDate(),
+        start: moment(new Date()).add(4, 'hours').toDate(),
+        end: moment(new Date()).add(5, 'hours').toDate(),
         title: "Przykładowy log 3"
       }
     ]
