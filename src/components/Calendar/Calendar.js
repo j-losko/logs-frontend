@@ -28,27 +28,36 @@ export default class CalendarComponent extends Component {
       {
         start: moment(new Date()).add(7, 'hours').toDate(),
         end: moment(new Date()).add(10, 'hours').toDate(),
-        title: "Przykładowy log 1"
+        title: "Przykładowy log 1",
+        id: 1,
+        allDay: false,
       },
       {
         start: moment(new Date()).add(6, 'hours').toDate(),
         end: moment(new Date()).add(9, 'hours').toDate(),
-        title: "Przykładowy log 2"
+        title: "Przykładowy log 2",
+        id: 2,
+        allDay: false,
       },
       {
         start: moment(new Date()).add(4, 'hours').toDate(),
         end: moment(new Date()).add(5, 'hours').toDate(),
-        title: "Przykładowy log 3"
+        title: "Przykładowy log 3",
+        id: 3,
+        allDay: false,
       }
     ]
   };
 
-  onEventResize = (type, { event, start, end, allDay }) => {
-    this.setState(state => {
-      state.events[0].start = start;
-      state.events[0].end = end;
-      return { events: state.events };
-    });
+  onEventResize = ({ start, end, event, resourceId }) => {
+    console.log(start, end, event, resourceId);
+    // this.setState(state => {
+    //   state.events[0].start = start;
+    //   state.events[0].end = end;
+    //   return { events: state.events };
+    // });
+
+    //https://stackoverflow.com/questions/50734092/react-bigcalendar-drag-and-drop-example-not-working
   };
 
   onEventDrop = ({ event, start, end, allDay }) => {
@@ -64,7 +73,7 @@ export default class CalendarComponent extends Component {
         messages={messages}
         events={this.state.events}
         localizer={localizer}
-        onSelectEvent={() => console.log("event selected!")}
+        onSelectEvent={(e) => console.log("event selected!", e)}
         onEventDrop={this.onEventDrop}
         onEventResize={this.onEventResize}
         onSelectEventSlot={() => console.log("event slot selected!")}
@@ -72,7 +81,7 @@ export default class CalendarComponent extends Component {
         resizable
         selectable
         style={{ height: '90vh', width: '40vw' }}
-        formats = {{
+        formats={{
           timeGutterFormat: 'HH:mm',
           dayHeaderFormat: 'DD.MM.YYYY'
         }}

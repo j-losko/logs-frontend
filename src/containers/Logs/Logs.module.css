@@ -1,0 +1,19 @@
+.button {
+    margin: 20px;
+    padding: 20px;
+    background-color: #09d3ac;
+    border: 1px solid #e62d8c;
+}
+
+.text {
+    margin: 20px;
+    padding: 20px;
+    background-color: cornflowerblue;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: burlywood;
+}
