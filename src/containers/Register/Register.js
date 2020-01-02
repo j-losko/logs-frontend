@@ -22,7 +22,7 @@ export default function Register(props) {
       return false;
     }
 
-    if (email.match(emailRegexRFC5322Standard)) {
+    if (!email.match(emailRegexRFC5322Standard)) {
       alert("Wpisz poprawny email!");
       return false;
     }
@@ -43,7 +43,7 @@ export default function Register(props) {
           "email": `${email}`,
           "password": `${password}`
         };
-      authService.signIn(authorization).then(resp => history.replace("/logs"));
+      authService.signUp(authorization).then(resp => history.replace("/logs"));
     }
   };
 
