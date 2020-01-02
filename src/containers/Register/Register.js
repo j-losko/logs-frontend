@@ -25,12 +25,38 @@ export default function Register(props) {
     if (!email.match(emailRegexRFC5322Standard)) {
       alert("Wpisz poprawny email!");
       return false;
+    } else if (email.trim().length > 40) {
+      alert("Email jest zbyt długi!");
+      return false;
     }
 
     if (password !== rePassword) {
-      alert("Hasło ma się zgadzać!");
+      alert("Hasło się nie zgadza!");
+      return false;
+    } else if (password.length < 6) {
+      alert("Hasło jest zbyt krótkie!");
+      return false;
+    } else if (password.length > 20) {
+      alert("Hasło jest zbyt długie!");
       return false;
     }
+
+    if ((firstName.trim().length + lastName.trim().length) < 4) {
+      alert("Imię i Nazwisko jest za krótkie!");
+      return false;
+    } else if ((firstName.trim().length + lastName.trim().length) > 40) {
+      alert("Imię i Nazwisko jest za długie!");
+      return false;
+    }
+
+    if (login.trim().length < 3) {
+      alert("Login jest zbyt krótki!");
+      return false;
+    } else if (login.trim().length > 15) {
+      alert("Login jest zbyt długi!");
+      return false;
+    }
+
     return true;
   };
 
@@ -39,11 +65,14 @@ export default function Register(props) {
       const authorization =
         {
           "name": `${firstName.trim()} ${lastName.trim()}`,
-          "username": `${login}`,
+          "username": `${login.trim()}`,
           "email": `${email}`,
           "password": `${password}`
         };
-      authService.signUp(authorization).then(resp => history.replace("/logs"));
+      authService.signUp(authorization).then(resp => {
+        history.replace("/login");
+        alert("Konto zostało założone!");
+      });
     }
   };
 
