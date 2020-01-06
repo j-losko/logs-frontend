@@ -3,6 +3,8 @@ import useInput from '../../hooks/useInput';
 import { BrowserRouter as Router, Switch, Route, useHistory } from 'react-router-dom';
 import authService from '../../api/authentication.api';
 import Logs from '../Logs/Logs';
+import { Button } from '../../components/Button/Button';
+import Style from './Login.module.css';
 
 export default function Login(props) {
   const [login, setLogin] = useInput({ label: "Login lub mail:", type: "text" });
@@ -40,10 +42,10 @@ export default function Login(props) {
     <Router>
       <Switch>
         <Route path="/login">
-          <div>
+          <div className={Style.container}>
             {setLogin}
             {setPassword}
-            <div onClick={signUp}>Zaloguj się</div>
+            <Button onClick={signUp} text="Zaloguj się" style={{marginTop: '15px'}}/>
             {error && error}
           </div>
         </Route>

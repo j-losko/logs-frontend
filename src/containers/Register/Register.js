@@ -3,6 +3,8 @@ import useInput from '../../hooks/useInput';
 import { BrowserRouter as Router, Switch, Route, useHistory } from 'react-router-dom';
 import authService from '../../api/authentication.api';
 import Logs from '../Logs/Logs';
+import { Button } from '../../components/Button/Button';
+import Style from './Register.module.css';
 
 // eslint-disable-next-line no-useless-escape
 const emailRegexRFC5322Standard = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -80,14 +82,14 @@ export default function Register(props) {
     <Router>
       <Switch>
         <Route path="/register">
-          <div>
+          <div className={Style.container}>
             {setFirstName}
             {setLastName}
             {setLogin}
             {setEmail}
             {setPassword}
             {setRePassword}
-            <div onClick={signUp}>Rejestruj</div>
+            <Button onClick={signUp} text="Rejestruj" style={{marginTop: '15px'}}/>
           </div>
         </Route>
         <Route path="/logs">

@@ -2,18 +2,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.button {
-  margin: 20px;
-  padding: 15px 20px;
-  background-color: rgba(99, 228, 255, 0.63);
-  border: 1px solid #1754e6;
-  border-radius: 10px;
+  justify-content: center;
+  height: 100vh;
 }
 
 .text {
-  margin: 20px;
+  margin-bottom: 40px;
   padding: 10px;
-  background-color: cornflowerblue;
+  font-size: 20px;
 }

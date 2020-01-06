@@ -4,6 +4,7 @@ import userService from '../../api/users.api';
 import moment from 'moment';
 import 'moment-duration-format';
 import logsService from '../../api/logs.api';
+import { Button } from '../../components/Button/Button';
 
 export default function Logs(props) {
   const [napisy, setNapisy] = useState('placeholder');
@@ -40,16 +41,18 @@ export default function Logs(props) {
   });
 
   return (
-    <div>
-      <div>Log list</div>
-      <div className={Style.button} onClick={getCurrentUser}>Get Current User</div>
-      <div className={Style.button} onClick={createLog}>Create log</div>
-      <div className={Style.button} onClick={getLogs}>Get logs from today</div>
-      <div className={Style.text}>{napisy}</div>
-      <br />
-      <br />
-      <br />
-      <div className={Style.container}>
+    <div className={Style.container}>
+      <Button onClick={() => alert('Dodaj loga')} text="Dodaj loga" />
+      <div className={Style.dayButtons}>
+        <Button onClick={() => alert('Poprzedni dzień')} text="Poprzedni dzień" />
+        <Button onClick={() => alert('Następny dzień')} text="Następny dzień" />
+      </div>
+      <div>Current date</div>
+      <div className={Style.logList}>
+        <div className={Style.button} onClick={getCurrentUser}>Get Current User</div>
+        <div className={Style.button} onClick={createLog}>Create log</div>
+        <div className={Style.button} onClick={getLogs}>Get logs from today</div>
+        <div className={Style.text}>{napisy}</div>
         {logList}
       </div>
     </div>

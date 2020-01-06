@@ -1,9 +1,10 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Login from './containers/Login/Login';
 import Register from './containers/Register/Register';
 import Logs from './containers/Logs/Logs';
 import Style from './App.module.css';
+import { LinkButton } from './components/LinkButton/LinkButton';
 
 function App() {
   return (
@@ -20,12 +21,11 @@ function App() {
             <Logs />
           </Route>
           <Route path="/">
-            <div className={Style.button}>
-              <Link to="/login">Login</Link>
+            <div className={Style.text}>
+              Serwis logowania czynności oraz poświęconego na nią czasu pracy
             </div>
-            <div className={Style.button}>
-              <Link to="/register">Register</Link>
-            </div>
+            <LinkButton to="/login" text="Logowanie" />
+            <LinkButton to="/register" text="Zarejestruj się" />
           </Route>
         </Switch>
       </div>

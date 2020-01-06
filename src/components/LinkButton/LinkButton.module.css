@@ -1,0 +1,16 @@
+.link {
+    text-decoration: none;
+    color: black;
+    margin: 10px;
+}
+
+.button {
+    width: 120px;
+    height: 30px;
+    border: 1px solid black;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
