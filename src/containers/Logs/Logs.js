@@ -5,9 +5,11 @@ import moment from 'moment';
 import 'moment-duration-format';
 import logsService from '../../api/logs.api';
 import { Button } from '../../components/Button/Button';
+import PerfectScrollbar from 'react-perfect-scrollbar';
 
 export default function Logs(props) {
   const [napisy, setNapisy] = useState('placeholder');
+  const [currentDay, setCurrentDay] = useState(moment(new Date()).format("DD.MM.YYYY"));
   const [logs, setLogs] = useState([]);
 
   const getCurrentUser = () => {
@@ -37,7 +39,6 @@ export default function Logs(props) {
       {log.activity}<br />
       {activityTime}
     </div>
-
   });
 
   return (
@@ -47,13 +48,24 @@ export default function Logs(props) {
         <Button onClick={() => alert('Poprzedni dzień')} text="Poprzedni dzień" />
         <Button onClick={() => alert('Następny dzień')} text="Następny dzień" />
       </div>
-      <div>Current date</div>
+      <div>{currentDay}</div>
       <div className={Style.logList}>
-        <div className={Style.button} onClick={getCurrentUser}>Get Current User</div>
-        <div className={Style.button} onClick={createLog}>Create log</div>
-        <div className={Style.button} onClick={getLogs}>Get logs from today</div>
-        <div className={Style.text}>{napisy}</div>
-        {logList}
+        <PerfectScrollbar>
+          <div className={Style.button} onClick={getCurrentUser}>Get Current User</div>
+          <div className={Style.button} onClick={createLog}>Create log</div>
+          <div className={Style.button} onClick={getLogs}>Get logs from today</div>
+          <div className={Style.text}>{napisy}</div>
+          <div className={Style.text}>{napisy}</div>
+          <div className={Style.text}>{napisy}</div>
+          <div className={Style.text}>{napisy}</div>
+          <div className={Style.text}>{napisy}</div>
+          <div className={Style.text}>{napisy}</div>
+          <div className={Style.text}>{napisy}</div>
+          <div className={Style.text}>{napisy}</div>
+          <div className={Style.text}>{napisy}</div>
+          <div className={Style.text}>{napisy}</div>
+          {logList}
+        </PerfectScrollbar>
       </div>
     </div>
   )
