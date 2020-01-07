@@ -4,6 +4,7 @@ import PerfectScrollbar from 'react-perfect-scrollbar';
 import { useEditModal } from '../Modals/useEditModal';
 import moment from 'moment';
 import logsService from '../../api/logs.api';
+import parseHumanizedDuration from '../../utils/parseHumanizedDuration';
 
 function formatRequestDate(date) {
   return moment(date).format("YYYY-MM-DD");
@@ -16,7 +17,7 @@ export default function LogList({currentDay}) {
     const editedLog = {
       logId: id,
       activity: activity,
-      activityTime: time
+      activityTime: parseHumanizedDuration(time)
     };
     logsService.editLog(editedLog).then(resp => getLogs());
   };

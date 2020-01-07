@@ -5,6 +5,7 @@ import useModalWithData from '../../hooks/useModalWithData';
 import parseHumanizedDuration from '../../utils/parseHumanizedDuration';
 import { modalContainerStyle } from './Modal.style';
 import Style from './Modal.module.css';
+import moment from 'moment';
 
 export function useEditModal(editLogRequest, deleteLogRequest) {
   const [showEditModal, hideEditModal] = useModalWithData((log = null) =>
@@ -17,11 +18,12 @@ export function useEditModal(editLogRequest, deleteLogRequest) {
       const [activityTime, setActivityTime] = useInput({
         label: "Czas poświęcony:",
         type: "text",
-        initialValue: log.activityTime
+        initialValue: moment.duration(log.activityTime, 'milliseconds')
+          .format("h[h] m[m] s[s] S[ms]", { trim: 'both' })
       });
 
       const editLog = () => {
-        editLogRequest(log.id, activity, parseHumanizedDuration(activityTime));
+        editLogRequest(log.id, activity, activityTime);
         hideEditModal();
       };
 
