@@ -1,4 +1,8 @@
 export default function parseHumanizedDuration(humanizedDuration) {
+  if (!humanizedDuration) {
+    return 0;
+  }
+
   // (grupa liczb) (dopuszczalne spacje) (słowo lub znak oznaczający wymiar czasu) (od razu po musi być albo biały znak albo nic)
   const hoursRegex = /([0-9]+)([ ]*)(h|hour|hours|godzina|godzin|godziny)(?!\w)/;
   const minutesRegex = /([0-9]+)([ ]*)(m|minute|minutes|minuta|minut|minuty)(?!\w)/;
@@ -12,16 +16,16 @@ export default function parseHumanizedDuration(humanizedDuration) {
 
   let parsedDuration = 0;
 
-  if(hours) {
+  if (hours) {
     parsedDuration += parseInt(hours[0]) * 60 * 60 * 1000;
   }
-  if(minutes) {
+  if (minutes) {
     parsedDuration += parseInt(minutes[0]) * 60 * 1000;
   }
-  if(seconds) {
+  if (seconds) {
     parsedDuration += parseInt(seconds[0]) * 1000;
   }
-  if(milliseconds) {
+  if (milliseconds) {
     parsedDuration += parseInt(milliseconds[0]);
   }
 

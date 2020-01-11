@@ -1,5 +1,6 @@
 import React from 'react';
 import useInput from '../../hooks/useInput';
+import parseHumanizedDuration from '../../utils/parseHumanizedDuration';
 import ReactModal from 'react-modal';
 import useModalWithData from '../../hooks/useModalWithData';
 import { modalContainerStyle } from './Modal.style';
@@ -12,8 +13,13 @@ export function useAddModal(createLog) {
       const [activityTime, setActivityTime] = useInput({ label: "Czas poświęcony:", type: "text" });
 
       const addLog = () => {
-        createLog(activity, activityTime, currentDay);
-        hideAddModal();
+        const timestamp = parseHumanizedDuration(activityTime);
+        if (timestamp) {
+          createLog(activity, timestamp, currentDay);
+          hideAddModal();
+        } else {
+          alert("Błędny czas poświęcony!");
+        }
       };
 
       return (
@@ -23,12 +29,16 @@ export function useAddModal(createLog) {
             {setActivity}
             {setActivityTime}
           </div>
-          <button type="button" className="link-button" onClick={hideAddModal}>
-            Wstecz
-          </button>
-          <button type="button" className="link-button" onClick={addLog}>
-            Dodaj
-          </button>
+          <br />
+          <div className={Style.buttonContainer}>
+            <div style={{ flex: '1' }} />
+            <button type="button" className={`link-button ${Style.button}`} onClick={hideAddModal}>
+              Wstecz
+            </button>
+            <button type="button" className={`link-button ${Style.button}`} onClick={addLog}>
+              Dodaj
+            </button>
+          </div>
         </ReactModal>
       );
     });

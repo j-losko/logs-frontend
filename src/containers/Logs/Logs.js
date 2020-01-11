@@ -6,7 +6,6 @@ import logsService from '../../api/logs.api';
 import { Button } from '../../components/Button/Button';
 import { useAddModal } from '../Modals/useAddModal';
 import LogList from './LogList';
-import parseHumanizedDuration from '../../utils/parseHumanizedDuration';
 
 function formatDisplayDate(date) {
   return moment(date).format("DD.MM.YYYY");
@@ -26,7 +25,7 @@ export default function Logs(props) {
     const newLog = {
       date: formatRequestDate(currentDay.date),
       activity: activity,
-      activityTime: parseHumanizedDuration(time)
+      activityTime: time
     };
     logsService.createLog(newLog).then(resp => setCurrentDay({
       date: currentDay.date,

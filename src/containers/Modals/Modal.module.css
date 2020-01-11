@@ -5,3 +5,14 @@
 .inputContainer {
     text-align: center;
 }
+
+.buttonContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.button {
+    flex: 1;
+    margin-bottom: 2px;
+}

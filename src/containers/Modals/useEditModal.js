@@ -1,11 +1,12 @@
 import React from 'react';
 import useInput from '../../hooks/useInput';
+import moment from 'moment';
+import { Button } from '../../components/Button/Button';
+import parseHumanizedDuration from '../../utils/parseHumanizedDuration';
 import ReactModal from 'react-modal';
 import useModalWithData from '../../hooks/useModalWithData';
-import parseHumanizedDuration from '../../utils/parseHumanizedDuration';
 import { modalContainerStyle } from './Modal.style';
 import Style from './Modal.module.css';
-import moment from 'moment';
 
 export function useEditModal(editLogRequest, deleteLogRequest) {
   const [showEditModal, hideEditModal] = useModalWithData((log = null) =>
@@ -23,8 +24,13 @@ export function useEditModal(editLogRequest, deleteLogRequest) {
       });
 
       const editLog = () => {
-        editLogRequest(log.id, activity, activityTime);
-        hideEditModal();
+        const timestamp = parseHumanizedDuration(activityTime);
+        if (timestamp) {
+          editLogRequest(log.id, activity, timestamp);
+          hideEditModal();
+        } else {
+          alert("Błędny czas poświęcony!");
+        }
       };
 
       const deleteLog = () => {
@@ -39,16 +45,17 @@ export function useEditModal(editLogRequest, deleteLogRequest) {
             {setActivity}
             {setActivityTime}
           </div>
-          <button type="button" onClick={() => editLog()}>
-            Edytuj log'a
-          </button>
+          <Button onClick={editLog} text="Edytuj log'a" style={{ margin: 'auto' }} />
           <br />
-          <button type="button" className="link-button" onClick={hideEditModal}>
-            Wstecz
-          </button>
-          <button type="button" className="link-button" onClick={() => deleteLog()}>
-            Usuń Log'a
-          </button>
+          <div className={Style.buttonContainer}>
+            <div style={{ flex: '1' }} />
+            <button type="button" className={`link-button ${Style.button}`} onClick={hideEditModal}>
+              Wstecz
+            </button>
+            <button type="button" className={`link-button ${Style.button}`} onClick={() => deleteLog()}>
+              Usuń Log'a
+            </button>
+          </div>
         </ReactModal>
       );
     });
